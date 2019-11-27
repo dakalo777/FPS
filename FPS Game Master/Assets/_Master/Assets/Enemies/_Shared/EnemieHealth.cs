@@ -6,6 +6,7 @@ public class EnemieHealth : MonoBehaviour, ITakeDamage
 {
     [SerializeField] private int maxHealth;
     private int currentHealth;
+    public int CurrentHealth { get { return currentHealth; } }
 
     private void Start()
     {

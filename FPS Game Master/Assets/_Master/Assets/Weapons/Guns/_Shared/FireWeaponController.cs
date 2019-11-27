@@ -20,19 +20,21 @@ public class FireWeaponController : MonoBehaviour, IWeapon
     private int damageAmmount;
 
     [SerializeField] private ScriptableAmmo ammo;
-    [SerializeField] private int maxClipCount;
+   
+    [SerializeField] private int maxAmmo;
+    public int MaxAmmo { get { return maxAmmo; } }
     private int clipCount;
-    private int currentAmmoLeft;
+    [SerializeField] private int currentAmmoLeft;
+    private int bulletsShot;
+    public int CurrentAmmoLeft { get { return currentAmmoLeft; } }
 
     private bool canFire;
     private void Start()
     {
-        damageAmmount = baseDamage;
-        currentAmmoLeft = ammo.maxClipSize;
+        damageAmmount = baseDamage;     
         damageAmmount = baseDamage + ammo.baseBulletDamage;
         if (currentAmmoLeft > 0)
-            canFire = true;
-
+            canFire = true;     
     }
     public void Drop()
     {
@@ -85,39 +87,36 @@ public class FireWeaponController : MonoBehaviour, IWeapon
             }
         }
         currentAmmoLeft--;
+        bulletsShot++;
+        if (bulletsShot >= ammo.maxClipSize)
+        {
+            StartCoroutine(Reload());            
+        }
     }
 
     private IEnumerator Reload()
     {
-        canFire = false;
-        yield return new WaitForSeconds(reloadTime);
-        if (clipCount > 0)
+        if (currentAmmoLeft > 0)
         {
-            clipCount--;
-            currentAmmoLeft = ammo.maxClipSize;
-            canFire = true;
-            print("Loaded");
+            canFire = false;
+            yield return new WaitForSeconds(reloadTime);
+            bulletsShot = 0;
+            canFire = true;     
             StopAllCoroutines();
         }
+        else
+            StopAllCoroutines();
     }
 
     public void RefillAmmo(ScriptableAmmo ammo, int clipCount)
     {
-        if (this.ammo == ammo && clipCount < maxClipCount)
+        currentAmmoLeft += ammo.maxClipSize*clipCount;
+        if (currentAmmoLeft >= maxAmmo)
         {
-            this.clipCount += clipCount;
+            currentAmmoLeft = maxAmmo;
         }
-
-        else
-        {
-            if (clipCount < maxClipCount)
-            {
-                this.clipCount = clipCount;
-                currentAmmoLeft = ammo.maxClipSize;
-                damageAmmount = baseDamage + ammo.baseBulletDamage;
-            }
-
-        }
+        StartCoroutine(Reload());
+        
     }
 
     public void ReloadWeaponAtCommand()

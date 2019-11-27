@@ -19,7 +19,7 @@ public class PickablesHandler : MonoBehaviour
                 var fireWeapon = GetComponentInChildren<FireWeaponController>();
                 if (fireWeapon!= null)
                 {
-                    fireWeapon.RefillAmmo(ammo._Ammo, ammo.ClipCount);
+                    fireWeapon.RefillAmmo(ammo._Ammo, ammo.ClipCount);                    
                 }
             }
 

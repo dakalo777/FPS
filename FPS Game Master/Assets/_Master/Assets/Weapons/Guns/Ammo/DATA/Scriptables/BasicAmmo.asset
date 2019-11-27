@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cartidgePrefab: {fileID: 0}
   maxClipSize: 9
-  baseBulletDamage: 3
+  baseBulletDamage: 1

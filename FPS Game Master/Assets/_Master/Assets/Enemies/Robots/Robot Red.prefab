@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 7542209838027917731}
   - component: {fileID: 8049429521033754443}
   - component: {fileID: 8884796824924074309}
+  - component: {fileID: 891210154}
+  - component: {fileID: 891210157}
   m_Layer: 0
   m_Name: Robot Red
   m_TagString: Untagged
@@ -78,7 +80,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -101,8 +103,35 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 256
-  detectionRadius: 3.64
-  visionAngle: 35.4
+  detectionRadius: 9.13
+  visionAngle: 82.06
+--- !u!114 &891210154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7542209838027917730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdad7be48c441864299271a0bae1c231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  isActive: 1
+--- !u!114 &891210157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7542209838027917730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ceb6d99ca133494ea6603cfef25fb3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1001 &7542209837707720416
 PrefabInstance:
   m_ObjectHideFlags: 0
